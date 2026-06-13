@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDS Soluciones Eléctricas y Mecatrónica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de Color basadas en la identidad de GDS (Fucsia, Negro y Blanco) */
+        :root {
+            --primary-blue: #1a2a6c;
+            --electric-yellow: #f1c40f;
+            --accent-pink: #d81b60; /* Fucsia llamativo */
+            --dark-bg: #121214;
+            --light-bg: #f8f9fa;
+            --card-gray: #1e1e24;
+            --text-light: #ffffff;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* BARRA DE NAVEGACIÓN */
+        header {
+            background-color: rgba(18, 18, 20, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--accent-pink);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Configuración del nuevo logotipo del negocio */
+        .logo-img-custom {
+            height: 55px;
+            width: 55px;
+            object-fit: contain;
+            border-radius: 50%;
+            margin-right: 12px;
+            border: 2px solid var(--primary-blue);
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+        .logo-img-custom:hover {
+            transform: scale(1.08);
+        }
+
+        .brand-text {
+            color: var(--text-light);
+        }
+
+        .brand-text h2 {
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .brand-text span {
+            font-size: 0.75rem;
+            color: var(--accent-pink);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-pink);
+        }
+
+        .nav-cta {
+            background-color: #25d366; /* Verde WhatsApp */
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: bold !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(37,211,102,0.3);
+            transition: transform 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            background-color: #20ba59;
+        }
+
+        /* SECCIÓN HERO (PRINCIPAL) */
+        .hero {
+            background: linear-gradient(135deg, rgba(18, 18, 20, 0.92) 40%, rgba(216, 27, 96, 0.4)), 
+                        url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            padding: 60px 20px;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-pink);
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 800;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+            font-weight: 300;
+            border-left: 4px solid var(--electric-yellow);
+            padding-left: 15px;
+        }
+
+        .badge-matriculado {
+            background: var(--accent-pink);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(216,27,96,0.4);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-pink);
+            color: white;
+            box-shadow: 0 4px 15px rgba(216,27,96,0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: #b0104b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        /* TIRA DE VALORES */
+        .features-strip {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--electric-yellow);
+            margin-bottom: 10px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: #b0b0b5;
+        }
+
+        /* SOBRE NOSOTROS & MECATRÓNICA */
+        .about {
+            padding: 80px 20px;
+            background-color: white;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-pink);
+            margin-top: 10px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .mecatronic-box {
+            background: linear-gradient(135deg, #1e1e24, #121214);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-pink);
+            margin-top: 25px;
+        }
+
+        .mecatronic-box h3 {
+            color: var(--electric-yellow);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* SECCIÓN SERVICIOS */
+        .services {
+            padding: 80px 20px;
+            background-color: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-bg);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 span {
+            color: var(--accent-pink);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(216,27,96,0.15);
+            border-top-color: var(--accent-pink);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(26,42,108,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background-color: var(--accent-pink);
+        }
+
+        .service-icon i {
+            font-size: 1.6rem;
+            color: var(--primary-blue);
+        }
+
+        .service-card:hover .service-icon i {
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--dark-bg);
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* SECCIÓN NUESTRO TRABAJO */
+        .gallery {
+            padding: 80px 20px;
+            background-color: white;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            aspect-ratio: 4 / 3;
+            background-color: #eaeaea;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--electric-yellow);
+        }
+
+        .gallery-overlay p {
+            font-size: 0.85rem;
+        }
+
+        /* SECCIÓN DE CONTACTO EXCLUSIVA */
+        .contact {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 80px 20px;
+            border-top: 4px solid var(--accent-pink);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info h2 span {
+            color: var(--accent-pink);
+        }
+
+        .contact-info p {
+            color: #b0b0b5;
+            margin-bottom: 30px;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .c-card {
+            background-color: var(--card-gray);
+            padding: 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: white;
+            border-left: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .c-card:hover {
+            border-left-color: var(--accent-pink);
+            background-color: #25252d;
+            transform: translateX(5px);
+        }
+
+        .c-card i {
+            font-size: 1.8rem;
+            color: var(--accent-pink);
+            width: 40px;
+            text-align: center;
+        }
+
+        .c-card.wp-hover:hover i {
+            color: #25d366;
+        }
+
+        .c-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .c-card p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Formulario de Presupuesto Directo */
+        .contact-form {
+            background-color: var(--card-gray);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background-color: #121214;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #b0104b;
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            background-color: #0b0b0d;
+            color: #777;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #1a1a1f;
+        }
+
+        footer p span {
+            color: white;
+        }
+
+        /* DISEÑO RESPONSIVO (ADAPTACIÓN A CELULARES) */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .hero-container, .about-container, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+            .hero-text h1 span {
+                font-size: 2.6rem;
+            }
+            .hero-visual {
+                order: -1;
+            }
+            .contact-form {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="logo_gds.jpg" alt="Logo GDS Mecatrónica" class="logo-img-custom" onerror="this.src='https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=100';">
+                
+                <div class="brand-text">
+                    <h2>GDS</h2>
+                    <span>Ingeniería e Instalaciones</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#galeria">Trabajos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="https://wa.me/5492616502011" class="nav-cta" target="_blank"><i class="fab fa-whatsapp"></i> Urgencias</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <span class="badge-matriculado"><i class="fas fa-certificate"></i> Electricista Matriculado</span>
+                <h1>Energía e Ingeniería <span>A Tu Alcance</span></h1>
+                <p>Brindamos soluciones integrales en electricidad residencial, redes industriales, automatizaciones y mecatrónica de vanguardia en Mendoza.</p>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn btn-primary"><i class="fas fa-file-invoice-dollar"></i> Presupuesto Sin Cargo</a>
+                    <a href="#servicios" class="btn btn-secondary">Ver Servicios</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=600" alt="Automatización Integrada GDS">
+            </div>
+        </div>
+    </section>
+
+    <section class="features-strip">
+        <div class="features-container">
+            <div class="feature-item">
+                <i class="fas fa-user-shield"></i>
+                <h4>Personal Matriculado</h4>
+                <p>Prácticas seguras bajo normativas vigentes.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-handshake"></i>
+                <h4>Atención de Calidad</h4>
+                <p>Excelente servicio y respuestas rápidas.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-dollar-sign"></i>
+                <h4>Presupuestos Transparentes</h4>
+                <p>Mano de obra certificada sin sorpresas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Sobre Nosotros</h2>
+                <p>En <strong>GDS Soluciones Eléctricas</strong>, combinamos experiencia técnica con un compromiso inquebrantable por la seguridad. Nos dedicamos a ofrecer soluciones integrales en electricidad residencial e industrial, priorizando siempre la eficiencia energética y el cumplimiento de las normativas vigentes.</p>
+                <p>Nuestro objetivo es que cada cliente, ya sea en su hogar o en su empresa, tenga la tranquilidad de contar con una instalación segura, moderna y duradera. No solo conectamos cables, brindamos soluciones óptimas que iluminan y potencian tus proyectos.</p>
+                
+                <div class="mecatronic-box">
+                    <h3><i class="fas fa-cogs"></i> Evolución hacia la Mecatrónica</h3>
+                    <p>Expandimos nuestras fronteras técnicas incorporando ingeniería integrada. Diseñamos e intervenimos sistemas automatizados, tableros de comando lógico programable (PLC) y soluciones robóticas adaptadas a la pequeña, mediana y gran industria mendocina.</p>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=600" alt="Ingeniería Mecatrónica GDS">
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <div class="section-header">
+            <h2>Nuestros <span>Servicios</span></h2>
+            <p>Especialidades técnicas garantizadas con la máxima prolijidad y materiales homologados.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" style="border-top-color: var(--accent-pink);">
+                <div class="service-icon" style="background-color: rgba(216,27,96,0.1);"><i class="fas fa-gavel" style="color: var(--accent-pink);"></i></div>
+                <h3>Puesta a Tierra (Res. 900/15)</h3>
+                <p>Medición técnica, control de continuidad de masas y confección de protocolos oficiales válidos para ART y municipios.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-industry"></i></div>
+                <h3>Instalaciones Industriales</h3>
+                <p>Montajes eléctricos de gran envergadura, fuerza motriz, canalizaciones y acometidas de potencia.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-home"></i></div>
+                <h3>Instalaciones Domiciliarias</h3>
+                <p>Cableados desde cero, reformas estructurales, ampliaciones y adecuación de seguridad para viviendas.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tools"></i></div>
+                <h3>Mantenimiento Preventivo</h3>
+                <p>Revisión periódica de líneas, termografías sutiles y corrección de fugas o fallas críticas antes de que ocurran.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-charging-station"></i></div>
+                <h3>Tableros de Potencia y Comando</h3>
+                <p>Diseño, armado e instalación de tableros de distribución de cargas y automatismos de control.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Cortocircuitos y Fugas</h3>
+                <p>Detección inmediata de anomalías, saltos de disyuntor y fugas a tierra que elevan tu factura de luz.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-robot"></i></div>
+                <h3>Automatizaciones y PLC</h3>
+                <p>Programación de lógica industrial, control de procesos automatizados y mecatrónica integrada.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-video"></i></div>
+                <h3>Alarmas y CCTV</h3>
+                <p>Instalación estratégica de cámaras de alta definición y sistemas de seguridad perimetral.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="gallery">
+        <div class="section-header">
+            <h2>Nuestro <span>Trabajo</span></h2>
+            <p>Visualiza la prolijidad técnica que aplicamos en cada intervención real en Mendoza.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=500" alt="Mediciones Eléctricas">
+                <div class="gallery-overlay">
+                    <h4>Medición Precisa e Instrumentación</h4>
+                    <p>Uso de multímetros y calibradores para diagnósticos exactos.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=500" alt="Instalación de Tableros">
+                <div class="gallery-overlay">
+                    <h4>Instalación de Tableros de Comando</h4>
+                    <p>Peinado de cables y disyuntores perfectamente identificados.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=500" alt="Sistemas Inteligentes e IoT">
+                <div class="gallery-overlay">
+                    <h4>Sistemas Inteligentes e IoT</h4>
+                    <p>Integración de redes mecatrónicas y control remoto residencial.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=500" alt="Mantenimiento Industrial">
+                <div class="gallery-overlay">
+                    <h4>Mantenimiento Industrial y Fuerza Motriz</h4>
+                    <p>Optimización y puesta a punto de líneas de producción.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>¿Tenés un <span>Proyecto o Urgencia</span>?</h2>
+                <p>Comunicate por cualquiera de nuestros canales oficiales para recibir asesoramiento técnico inmediato o coordinar una visita en toda la provincia.</p>
+                
+                <div class="contact-cards">
+                    <a href="https://wa.me/5492616502011" target="_blank" class="c-card wp-hover">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp Directo</h4>
+                            <p>+54 9 261 650 2011 (Presupuestos y Urgencias)</p>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/gds_soluciones_electricas?igsh=ZzI1ZGlsdGh6M252" target="_blank" class="c-card">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h4>Instagram Profesional</h4>
+                            <p>@gds_soluciones_electricas</p>
+                        </div>
+                    </a>
+                    <a href="mailto:gdssolucioneselectricas@hotmail.com" class="c-card">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Correo Electrónico</h4>
+                            <p>gdssolucioneselectricas@hotmail.com</p>
+                        </div>
+                    </a>
+                    <div class="c-card" style="cursor: default;">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Área de Cobertura</h4>
+                            <p>Mendoza</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Solicitar Presupuesto Gratis</h3>
+                <form action="#" method="POST" onsubmit="alert('¡Gracias por comunicarte con GDS! Nos pondremos en contacto a la brevedad.'); return false;">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" class="form-control" placeholder="Ej: Gustavo Silva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono / Celular</label>
+                        <input type="tel" id="telefono" class="form-control" placeholder="Ej: 2616502011" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo">Tipo de Servicio</label>
+                        <select id="tipo" class="form-control">
+                            <option value="puesta-tierra">Puesta a Tierra (Res. 900/15)</option>
+                            <option value="residencial">Instalación Domiciliaria</option>
+                            <option value="industrial">Instalación Industrial / Tableros</option>
+                            <option value="mecatronica">Automatización y PLC (Mecatrónica)</option>
+                            <option value="urgencia">Reparación de Falla / Cortocircuito</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Detalles del Trabajo</label>
+                        <textarea id="mensaje" rows="4" class="form-control" placeholder="Describinos brevemente qué necesitas realizar..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <span>GDS Soluciones Eléctricas e Ingeniería Integrada</span>. Todos los derechos reservados.</p>
+        <p style="font-size: 0.75rem; margin-top: 5px; color: #444;">Mendoza, Argentina</p>
+    </footer>
+
+</body>
+</html>
